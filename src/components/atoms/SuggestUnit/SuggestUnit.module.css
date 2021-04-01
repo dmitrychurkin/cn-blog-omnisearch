@@ -1,0 +1,29 @@
+.root {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+}
+
+.info {
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--color-black);
+    font-weight: 400;
+    margin-bottom: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.address {
+    font-size: .875rem;
+    line-height: .9375rem;
+    color: var(--color-dark-grey);
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.highlight {
+    font-weight: 600;
+}

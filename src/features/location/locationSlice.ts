@@ -44,7 +44,6 @@ const locationSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(fetchUserCurrentLocation.fulfilled, (state, action) => {
-                console.log('action => ', action);
                 state.currentLocationEntity = action.payload;
             })
     }

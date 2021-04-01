@@ -1,3 +1,5 @@
+import { SuggestionTypeEnum } from "../../components/atoms/SuggestUnit/SuggestionTypeEnum";
+
 export interface ILocationState {
     isFocus: boolean;
     location: string;
@@ -27,7 +29,5 @@ export interface ISuggestion {
     readonly name: string;
     readonly slug: string;
     readonly state: string;
-    readonly type: SuggestionType
+    readonly type: SuggestionTypeEnum;
 }
-
-type SuggestionType = 'Country' | 'State' | 'Neighbourhood' | 'City' | 'Hotel' | 'VR' | 'Airport';
