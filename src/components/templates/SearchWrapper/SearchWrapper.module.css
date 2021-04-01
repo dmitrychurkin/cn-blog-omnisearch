@@ -1,3 +1,15 @@
 .root {
+    margin-top: 1.25rem;
     border-radius: var(--radius-default);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    border-radius: var(--radius-default);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, .15);
+}
+
+@media (min-width: 600px) {
+    .root {
+        display: initial;
+    }
 }

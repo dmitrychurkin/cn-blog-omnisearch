@@ -7,7 +7,7 @@ import styles from './TextInput.module.css';
 const TextInput: React.FC<ITextInputProps> = ({ startIcon: StartIcon, ...restInputProps }) => (
     <div className={clsx(styles.root, StartIcon && styles.withIcon)}>
         {StartIcon}
-        <input {...restInputProps} />
+        <input className={styles.input} {...restInputProps} />
     </div>
 );
 

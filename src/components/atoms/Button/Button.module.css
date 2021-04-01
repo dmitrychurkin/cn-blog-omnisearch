@@ -1,3 +1,21 @@
+.root {
+    font-family: var(--font-family);
+    border: none;
+    border-radius: var(--radius-default);
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: .625rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: var(--color-white);
+    font-weight: 500;
+    padding: .875rem;
+    font-size: 1rem;
+    margin-top: 1.25rem;
+    outline: 0;
+}
+
 .primary {
     background-color: var(--color-vibrant-pink);
 }

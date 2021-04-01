@@ -1,8 +1,18 @@
 .root {
     display: grid;
     grid-template-columns: auto;
+    grid-column: 1 / span 3;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-subtle-grey);
 }
 
 .withIcon {
     grid-template-columns: max-content 1fr;
+}
+
+.input {
+    border: none;
+    outline: 0;
+    font-size: 1rem;
+    font-family: var(--font-family);
 }

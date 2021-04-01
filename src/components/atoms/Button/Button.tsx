@@ -16,7 +16,9 @@ const Button: React.FC<IButtonProps> = ({
     <button
         {...rest}
         className={clsx(
+            'omnisearch-button',
             className,
+            styles.root,
             styles[variant ?? VariantEnum.CONTAINED],
             styles[color ?? ColorEnum.PRIMARY]
         )}
