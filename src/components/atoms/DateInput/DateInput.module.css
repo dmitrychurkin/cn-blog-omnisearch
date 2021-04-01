@@ -1,0 +1,13 @@
+.root {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+.dates {
+    width: 100%;
+    background-color: red;
+}
+
+.calendar {
+    display: none;
+}
