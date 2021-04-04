@@ -1,3 +1,3 @@
 export enum ButtonColorEnum {
-    PRIMARY = 'primary',
+  PRIMARY = "primary",
 }

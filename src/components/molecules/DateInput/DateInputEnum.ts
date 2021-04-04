@@ -1,4 +1,4 @@
 export enum DateInputEnum {
-    START = 'startDate',
-    END = 'endDate'
+  START = "startDate",
+  END = "endDate",
 }

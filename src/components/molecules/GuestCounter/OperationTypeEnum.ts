@@ -1,4 +1,4 @@
 export enum OperationTypeEnum {
-    INC,
-    DEC
+  INC,
+  DEC,
 }

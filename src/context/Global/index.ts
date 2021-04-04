@@ -1,2 +1,2 @@
-export { default, GlobalCtx } from './Global';
-export { ViewportTypeEnum } from './ViewportTypeEnum';
+export { default, GlobalCtx } from "./Global";
+export { ViewportTypeEnum } from "./ViewportTypeEnum";

@@ -1,15 +1,16 @@
 .DateRangePicker {
-    position: absolute;
-    left: 15%;
-    top: 0;
+  position: absolute;
+  left: 15%;
+  top: 0;
 }
 
 .DateRangePickerInput {
-    display: flex;
+  display: flex;
 }
 
-.DateInput, .DateRangePickerInput_arrow {
-    display: none;
+.DateInput,
+.DateRangePickerInput_arrow {
+  display: none;
 }
 /* .DateInput__small {
     width: 30px;
@@ -20,35 +21,35 @@
 } */
 
 .DateRangePicker_picker {
-    border-radius: var(--radius-default);
+  border-radius: var(--radius-default);
 }
 
 .DayPicker__horizontal {
-    border-radius: var(--radius-default);
+  border-radius: var(--radius-default);
 }
 
 .DayPicker_transitionContainer {
-    border-radius: var(--radius-default);
+  border-radius: var(--radius-default);
 }
 
 .DateRangePicker_picker__fullScreenPortal {
-    animation: slideIn .4s ease-in-out .1s forwards;
-    visibility: hidden;
+  animation: slideIn 0.4s ease-in-out 0.1s forwards;
+  visibility: hidden;
 }
 
 .DayPickerNavigation__verticalDefault {
-    display: flex;
+  display: flex;
 }
 
 .DayPickerNavigation_button {
-    outline: 0;
+  outline: 0;
 }
 
 .CalendarDay__selected,
 .CalendarDay__selected:active,
 .CalendarDay__selected:hover {
-    background-image: linear-gradient(92.14deg, #F35597 1.79%, #F53959 99.81%);
-    border-color: #F53959;
+  background-image: linear-gradient(92.14deg, #f35597 1.79%, #f53959 99.81%);
+  border-color: #f53959;
 }
 
 .CalendarDay__selected_span,
@@ -56,22 +57,22 @@
 .CalendarDay__selected_span:hover,
 .CalendarDay__hovered_span,
 .CalendarDay__hovered_span:hover {
-    background: rgb(243 85 151 / 50%);
-    border-color: var(--color-vibrant-pink);
+  background: rgb(243 85 151 / 50%);
+  border-color: var(--color-vibrant-pink);
 }
 
 .CalendarDay__hovered_span,
 .CalendarDay__hovered_span:hover {
-    color: var(--color-white);
+  color: var(--color-white);
 }
 
 @keyframes slideIn {
-    from {
-        transform: translateY(100%);
-        visibility: hidden;
-    }
-    to {
-        transform: none;
-        visibility: visible;
-    }
+  from {
+    transform: translateY(100%);
+    visibility: hidden;
+  }
+  to {
+    transform: none;
+    visibility: visible;
+  }
 }

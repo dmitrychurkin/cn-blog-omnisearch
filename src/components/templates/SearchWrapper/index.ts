@@ -1,1 +1,1 @@
-export { default } from './SearchWrapper';
+export { default } from "./SearchWrapper";

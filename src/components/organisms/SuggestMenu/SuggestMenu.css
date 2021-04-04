@@ -1,5 +1,7 @@
-.omnisearch-suggest-menu .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
-    width: .25rem;
-    top: .625rem;
-    background-color: var(--color-subtle-grey);
+.omnisearch-suggest-menu
+  .simplebar-track.simplebar-vertical
+  .simplebar-scrollbar:before {
+  width: 0.25rem;
+  top: 0.625rem;
+  background-color: var(--color-subtle-grey);
 }

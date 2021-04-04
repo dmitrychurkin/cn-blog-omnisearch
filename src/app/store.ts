@@ -1,13 +1,13 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import locationReducer from '../features/location/locationSlice';
-import dateReducer from '../features/date/dateSlice';
-import guestReducer from '../features/guest/guestSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import locationReducer from "../features/location/locationSlice";
+import dateReducer from "../features/date/dateSlice";
+import guestReducer from "../features/guest/guestSlice";
 
 export const store = configureStore({
   reducer: {
     location: locationReducer,
     date: dateReducer,
-    guest: guestReducer
+    guest: guestReducer,
   },
 });
 

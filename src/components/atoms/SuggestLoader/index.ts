@@ -1,1 +1,1 @@
-export { default } from './SuggestLoader';
+export { default } from "./SuggestLoader";

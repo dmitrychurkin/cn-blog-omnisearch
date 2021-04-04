@@ -1,5 +1,5 @@
 export enum GuestTypeEnum {
-    ADULT,
-    CHILD,
-    INFANT
+  ADULT,
+  CHILD,
+  INFANT,
 }

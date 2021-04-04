@@ -5,30 +5,35 @@ import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/Sugge
 import { location } from "./locationSlice";
 
 export default function useSuggestSelect() {
-    const dispatch = useAppDispatch();
-    return useCallback((suggest: SuggestPayloadType) => {
-        const abstractSelector = new Map<SuggestionTypeEnum, (suggest: SuggestPayloadType) => void>()
-            .set(SuggestionTypeEnum.NEARBY, ({ country, city }) => {
-                console.log('Do redirect to SRP!');
-            })
-            .set(SuggestionTypeEnum.DEFAULT, ({ name, city, state, country }) => {
-                dispatch(
-                    location(
-                        [name, city, state, country]
-                            .map(w => w?.trim())
-                            .filter(w => w)
-                            .join(', ')
-                    )
-                );
-            });
+  const dispatch = useAppDispatch();
+  return useCallback(
+    (suggest: SuggestPayloadType) => {
+      const abstractSelector = new Map<
+        SuggestionTypeEnum,
+        (suggest: SuggestPayloadType) => void
+      >()
+        .set(SuggestionTypeEnum.NEARBY, ({ country, city }) => {
+          console.log("Do redirect to SRP!");
+        })
+        .set(SuggestionTypeEnum.DEFAULT, ({ name, city, state, country }) => {
+          dispatch(
+            location(
+              [name, city, state, country]
+                .map((w) => w?.trim())
+                .filter((w) => w)
+                .join(", ")
+            )
+          );
+        });
 
-        const { type = SuggestionTypeEnum.DEFAULT } = suggest;
+      const { type = SuggestionTypeEnum.DEFAULT } = suggest;
 
-        const handler = (
-            abstractSelector.get(type) ||
-            abstractSelector.get(SuggestionTypeEnum.DEFAULT)
-        );
+      const handler =
+        abstractSelector.get(type) ||
+        abstractSelector.get(SuggestionTypeEnum.DEFAULT);
 
-        return handler?.(suggest);
-    }, [dispatch]);
+      return handler?.(suggest);
+    },
+    [dispatch]
+  );
 }

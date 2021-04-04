@@ -1,1 +1,1 @@
-export { default } from './SuggestIcon';
+export { default } from "./SuggestIcon";

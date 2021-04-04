@@ -1,83 +1,83 @@
 .popoverRoot {
-    position: absolute;
-    top: var(--popup-position-top);
-    right: 0;
-    background-color: var(--color-white);
-    box-shadow: 0 .25rem .9375rem rgb(0 0 0 / 15%);
-    border-radius: var(--radius-default);
-    padding-top: 1rem;
-    min-width: 300px;
-    opacity: 0;
+  position: absolute;
+  top: var(--popup-position-top);
+  right: 0;
+  background-color: var(--color-white);
+  box-shadow: 0 0.25rem 0.9375rem rgb(0 0 0 / 15%);
+  border-radius: var(--radius-default);
+  padding-top: 1rem;
+  min-width: 300px;
+  opacity: 0;
 }
 
 .popoverRoot:global {
-    animation: appear .3s ease-out forwards;
+  animation: appear 0.3s ease-out forwards;
 }
 
 .popoverRoot .actionBar {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, .3);
-    display: flex;
-    align-items: flex-end;
-    position: fixed;
-    inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: flex-end;
+  position: fixed;
+  inset: 0;
 }
 
 .root {
-    font-family: var(--font-family);
-    background-color: var(--color-white);
-    width: 100%;
-    border: .0625rem solid var(--color-light-grey);
-    box-shadow: 0 .125rem .625rem rgb(0 0 0 / 15%);
-    outline: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-white);
+  width: 100%;
+  border: 0.0625rem solid var(--color-light-grey);
+  box-shadow: 0 0.125rem 0.625rem rgb(0 0 0 / 15%);
+  outline: 0;
 }
 
 .header {
-    color: var(--color-black);
-    font-size: 1.375rem;
-    font-weight: 500;
-    text-align: center;
-    padding-top: 1.5625rem;
-    padding-bottom: 1.25rem;
+  color: var(--color-black);
+  font-size: 1.375rem;
+  font-weight: 500;
+  text-align: center;
+  padding-top: 1.5625rem;
+  padding-bottom: 1.25rem;
 }
 
 .close {
-    position: absolute;
-    background-color: transparent;
-    width: max-content;
-    left: 1.25rem;
-    top: 2rem;
-    transform: rotate(90deg);
+  position: absolute;
+  background-color: transparent;
+  width: max-content;
+  left: 1.25rem;
+  top: 2rem;
+  transform: rotate(90deg);
 }
 
 .wrapper {
-    display: grid;
-    row-gap: 1rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+  display: grid;
+  row-gap: 1rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .sub {
-    color: var(--color-dark-grey);
+  color: var(--color-dark-grey);
 }
 
 .track {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .actionBar {
-    padding-bottom: 1.25rem;
-    padding-top: 1.25rem;
-    box-shadow: 0 .25rem .9375rem rgb(0 0 0 / 15%);
-    margin-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-top: 1.25rem;
+  box-shadow: 0 0.25rem 0.9375rem rgb(0 0 0 / 15%);
+  margin-top: 1.25rem;
 }
 
 .btn {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }

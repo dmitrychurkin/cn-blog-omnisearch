@@ -1,26 +1,26 @@
 .ReactModal__Overlay {
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.ReactModal__Overlay--after-open{
-    opacity: 1;
+.ReactModal__Overlay--after-open {
+  opacity: 1;
 }
 
-.ReactModal__Overlay--before-close{
-    opacity: 0;
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }
 
 .ReactModal__Content {
-    transition: transform .3s ease-in-out;
-    transform: translateY(300%);
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(300%);
 }
 
 .ReactModal__Content--after-open {
-    transition-delay: .1s;
-    transform: translateY(0);
+  transition-delay: 0.1s;
+  transform: translateY(0);
 }
 
-.ReactModal__Content--before-close{
-    transform: translateY(300%);
+.ReactModal__Content--before-close {
+  transform: translateY(300%);
 }

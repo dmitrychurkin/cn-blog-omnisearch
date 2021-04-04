@@ -1,5 +1,5 @@
 export enum ViewportTypeEnum {
-    MOBILE,
-    TABLET,
-    DESKTOP
+  MOBILE,
+  TABLET,
+  DESKTOP,
 }

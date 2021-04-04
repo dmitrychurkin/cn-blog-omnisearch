@@ -1,11 +1,11 @@
 .root {
-    font-family: var(--font-family);
-    width: 100%;
+  font-family: var(--font-family);
+  width: 100%;
 }
 
 .wrapper {
-    max-width: 41rem;
-    margin: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+  max-width: 41rem;
+  margin: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }

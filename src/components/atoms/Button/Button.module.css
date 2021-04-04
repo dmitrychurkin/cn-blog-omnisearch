@@ -1,37 +1,37 @@
 .root {
-    font-family: var(--font-family);
-    border: none;
-    border-radius: var(--radius-default);
-    display: grid;
-    grid-template-columns: max-content auto;
-    column-gap: .625rem;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    color: var(--color-white);
-    font-weight: 500;
-    padding: .875rem;
-    font-size: 1rem;
-    outline: 0;
-    cursor: pointer;
+  font-family: var(--font-family);
+  border: none;
+  border-radius: var(--radius-default);
+  display: grid;
+  grid-template-columns: max-content auto;
+  column-gap: 0.625rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: var(--color-white);
+  font-weight: 500;
+  padding: 0.875rem;
+  font-size: 1rem;
+  outline: 0;
+  cursor: pointer;
 }
 
 .root:disabled {
-    cursor: initial;
+  cursor: initial;
 }
 
 .primary {
-    background-color: var(--color-vibrant-pink);
+  background-color: var(--color-vibrant-pink);
 }
 
 .text {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .icon {
-    border-radius: 50%;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

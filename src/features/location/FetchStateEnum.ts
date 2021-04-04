@@ -1,5 +1,5 @@
 export enum FetchStateEnum {
-    PENDING = 'PENDING',
-    FULFILLED = 'FULFILLED',
-    REJECTED = 'REJECTED'
+  PENDING = "PENDING",
+  FULFILLED = "FULFILLED",
+  REJECTED = "REJECTED",
 }
