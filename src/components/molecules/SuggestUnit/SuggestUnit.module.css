@@ -6,6 +6,7 @@
   height: 4.188rem;
   padding-left: 1rem;
   padding-right: 1.188rem;
+  cursor: pointer;
 }
 
 .root:hover {

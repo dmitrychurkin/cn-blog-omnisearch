@@ -9,38 +9,19 @@ export default function useSuggestSelect() {
   const redirect = useRedirect();
   return useCallback(
     (suggest: SuggestPayloadType) => {
-      const abstractSelector = new Map<
-        SuggestionTypeEnum,
-        (suggest: SuggestPayloadType) => void
-      >()
-        .set(SuggestionTypeEnum.NEARBY, () => {
-          redirect(SuggestionTypeEnum.NEARBY);
-        })
-        .set(
+      dispatch(suggestion(suggest));
+
+      const { type } = suggest;
+      if (
+        type &&
+        [
+          SuggestionTypeEnum.NEARBY,
           SuggestionTypeEnum.HOTEL,
-          (suggestionPayload: SuggestPayloadType) => {
-            dispatch(suggestion(suggestionPayload));
-            redirect(SuggestionTypeEnum.HOTEL);
-          }
-        )
-        .set(SuggestionTypeEnum.VR, (suggestionPayload: SuggestPayloadType) => {
-          dispatch(suggestion(suggestionPayload));
-          redirect(SuggestionTypeEnum.VR);
-        })
-        .set(
-          SuggestionTypeEnum.DEFAULT,
-          (suggestionPayload: SuggestPayloadType) => {
-            dispatch(suggestion(suggestionPayload));
-          }
-        );
-
-      const { type = SuggestionTypeEnum.DEFAULT } = suggest;
-
-      const handler =
-        abstractSelector.get(type) ||
-        abstractSelector.get(SuggestionTypeEnum.DEFAULT);
-
-      return handler?.(suggest);
+          SuggestionTypeEnum.VR,
+        ].includes(type)
+      ) {
+        redirect(type);
+      }
     },
     [dispatch, redirect]
   );

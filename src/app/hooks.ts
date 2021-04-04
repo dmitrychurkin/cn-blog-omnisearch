@@ -146,7 +146,7 @@ export const useRedirect = () => {
         generateLinkStrategies.get(SuggestionTypeEnum.DEFAULT);
       const redirectLink = linkGeneratedStrategy?.(strategy);
       if (typeof redirectLink === "string" && redirectLink.length > 0) {
-        window.open(redirectLink);
+        window.open(redirectLink, "_self");
       }
     },
     [generateLinkStrategies]
