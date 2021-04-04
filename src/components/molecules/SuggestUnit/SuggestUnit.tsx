@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import Highlighter from "react-highlight-words";
+import { constructLocationString } from "../../../app/util";
 import SuggestionIcon from "../../atoms/SuggestIcon";
 import { SuggestPayloadType } from "./SuggestPayloadType";
 
@@ -17,23 +18,27 @@ const SuggestUnit: React.FC<Prop> = ({
   city,
   state,
   country,
+  id,
+  slug,
   locationInput,
   onSelect,
 }) => {
   const address = useMemo(
-    () => [city, state, country].filter((w) => w).join(", "),
+    () => constructLocationString({ city, state, country }),
     [city, state, country]
   );
 
-  const onClick = useCallback(() => {
+  const onClick = () => {
     onSelect({
       type,
       name,
       city,
       state,
       country,
+      id,
+      slug
     });
-  }, [type, name, city, state, country, onSelect]);
+  };
 
   return (
     <div

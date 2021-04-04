@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import request from "../../app/api";
 import config from "../../app/config";
 import { RootState } from "../../app/store";
+import { constructLocationString } from "../../app/util";
+import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/SuggestPayloadType";
 import { FetchStateEnum } from "./FetchStateEnum";
 import { ICurrentLocation } from "./ICurrentLocation";
 import { ILocationState } from "./ILocationState";
@@ -12,6 +14,7 @@ const initialState: ILocationState = {
   isFocus: false,
   location: "",
   currentLocationEntity: {},
+  seletedSuggestion: undefined,
   suggestionEnitiesFetchState: undefined,
   suggestionEnitiesNearbyFetchState: undefined,
   suggestionEnities: [],
@@ -106,12 +109,12 @@ export const fetchSuggestion = createAsyncThunk<
 >(
   "location/fetchSuggestion",
   async (_, { signal, getState }) => {
-    const { location, currentLocationEntity } = getState().location;
+    const { location, currentLocationEntity, seletedSuggestion } = getState().location;
     const response = await request(`${config.GEO_SERVER_URI}/location`, {
       method: "post",
       signal,
       body: JSON.stringify({
-        data: location,
+        data: seletedSuggestion ? seletedSuggestion.name : location,
         type: "hotel",
         country: currentLocationEntity.country,
       }),
@@ -161,7 +164,14 @@ const locationSlice = createSlice({
     location: (state, action: PayloadAction<string>) => {
       state.location = action.payload;
     },
+    suggestion: (state, { payload }: PayloadAction<SuggestPayloadType | undefined>) => {
+      state.seletedSuggestion = payload;
+      if (typeof payload !== 'undefined') {
+        state.location = constructLocationString(payload);
+      }
+    },
     resetSuggestions: (state) => {
+      state.seletedSuggestion = undefined;
       state.suggestionEnitiesFetchState = undefined;
       state.suggestionEnities = [];
     },
@@ -188,7 +198,7 @@ const locationSlice = createSlice({
   },
 });
 
-export const { focus, location, resetSuggestions } = locationSlice.actions;
+export const { focus, location, resetSuggestions, suggestion } = locationSlice.actions;
 
 export default locationSlice.reducer;
 

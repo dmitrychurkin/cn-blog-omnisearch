@@ -13,17 +13,18 @@ import styles from "./SuggestMenu.module.css";
 import "./SuggestMenu.css";
 import { SuggestPayloadType } from "../../molecules/SuggestUnit/SuggestPayloadType";
 
-type SuggestionType = {
-  readonly id?: string;
-  readonly type?: SuggestionTypeEnum;
-  readonly city?: string;
-  readonly name: string;
-  readonly country: string;
-  readonly state: string;
-};
+// type SuggestionType = {
+//   readonly id?: string;
+//   readonly slug?: string;
+//   readonly type?: SuggestionTypeEnum;
+//   readonly city?: string;
+//   readonly name: string;
+//   readonly country: string;
+//   readonly state: string;
+// };
 
 type Prop = {
-  readonly suggestions: Array<SuggestionType>;
+  readonly suggestions: Array<SuggestPayloadType>;
   readonly locationInput: string;
   readonly mode: SuggestModeEnum;
   readonly onSelect: (arg: SuggestPayloadType) => void;
@@ -39,11 +40,13 @@ const SuggestMenu: React.FC<Prop> = ({
 
   const getSuggestUnit = useCallback(
     (customSuggestionType?: SuggestionTypeEnum) => (
-      { id, type, name, country, state, city }: SuggestionType,
+      { id, slug, type, name, country, state, city }: SuggestPayloadType,
       index: number
     ) => (
       <SuggestUnit
         key={id ?? String(index)}
+        id={id}
+        slug={slug}
         type={customSuggestionType ?? type}
         name={name}
         country={country}

@@ -6,4 +6,7 @@ export type SuggestPayloadType = {
   readonly name: string;
   readonly state: string;
   readonly country: string;
+  // Hotel VR specific
+  readonly id?: string,
+  readonly slug?: string;
 };

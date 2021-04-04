@@ -16,8 +16,9 @@ import {
   location as locationAction,
   focus,
   resetSuggestions,
+  suggestion
 } from "./locationSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector, useAppStore } from "../../app/hooks";
 import { FetchStateEnum } from "./FetchStateEnum";
 import SuggestMenu from "../../components/organisms/SuggestMenu";
 import { SuggestModeEnum } from "../../components/organisms/SuggestMenu/SuggestModeEnum";
@@ -26,9 +27,11 @@ import useSuggestSelect from "./useSuggestSelect";
 import { ReactComponent as LocationIcon } from "../../icons/Location-outlined.svg";
 
 import styles from "./Location.module.css";
+import { constructLocationString } from "../../app/util";
 
 const Location: React.FC = () => {
   const isLocationPristine = useRef(true);
+  const store = useAppStore();
   const dispatch = useAppDispatch();
   const {
     isFocus,
@@ -142,11 +145,22 @@ const Location: React.FC = () => {
     } else {
       isLocationPristine.current = false;
     }
+
+    const { seletedSuggestion } = store.getState().location;
+    if (seletedSuggestion && (location !== constructLocationString(seletedSuggestion))) {
+      dispatch(suggestion());
+    }
+
     const promise = getSuggestionHandler();
     return () => {
       promise?.abort();
     };
-  }, [dispatch, getSuggestionHandler, location]);
+  }, [
+    store,
+    dispatch,
+    getSuggestionHandler,
+    location
+  ]);
 
   return (
     <div className={clsx("omnisearch-location", styles.root)}>
