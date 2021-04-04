@@ -109,7 +109,11 @@ export const fetchSuggestion = createAsyncThunk<
 >(
   "location/fetchSuggestion",
   async (_, { signal, getState }) => {
-    const { location, currentLocationEntity, seletedSuggestion } = getState().location;
+    const {
+      location,
+      currentLocationEntity,
+      seletedSuggestion,
+    } = getState().location;
     const response = await request(`${config.GEO_SERVER_URI}/location`, {
       method: "post",
       signal,
@@ -164,9 +168,12 @@ const locationSlice = createSlice({
     location: (state, action: PayloadAction<string>) => {
       state.location = action.payload;
     },
-    suggestion: (state, { payload }: PayloadAction<SuggestPayloadType | undefined>) => {
+    suggestion: (
+      state,
+      { payload }: PayloadAction<SuggestPayloadType | undefined>
+    ) => {
       state.seletedSuggestion = payload;
-      if (typeof payload !== 'undefined') {
+      if (typeof payload !== "undefined") {
         state.location = constructLocationString(payload);
       }
     },
@@ -198,7 +205,12 @@ const locationSlice = createSlice({
   },
 });
 
-export const { focus, location, resetSuggestions, suggestion } = locationSlice.actions;
+export const {
+  focus,
+  location,
+  resetSuggestions,
+  suggestion,
+} = locationSlice.actions;
 
 export default locationSlice.reducer;
 

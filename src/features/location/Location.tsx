@@ -16,7 +16,7 @@ import {
   location as locationAction,
   focus,
   resetSuggestions,
-  suggestion
+  suggestion,
 } from "./locationSlice";
 import { useAppDispatch, useAppSelector, useAppStore } from "../../app/hooks";
 import { FetchStateEnum } from "./FetchStateEnum";
@@ -147,7 +147,10 @@ const Location: React.FC = () => {
     }
 
     const { seletedSuggestion } = store.getState().location;
-    if (seletedSuggestion && (location !== constructLocationString(seletedSuggestion))) {
+    if (
+      seletedSuggestion &&
+      location !== constructLocationString(seletedSuggestion)
+    ) {
       dispatch(suggestion());
     }
 
@@ -155,12 +158,7 @@ const Location: React.FC = () => {
     return () => {
       promise?.abort();
     };
-  }, [
-    store,
-    dispatch,
-    getSuggestionHandler,
-    location
-  ]);
+  }, [store, dispatch, getSuggestionHandler, location]);
 
   return (
     <div className={clsx("omnisearch-location", styles.root)}>

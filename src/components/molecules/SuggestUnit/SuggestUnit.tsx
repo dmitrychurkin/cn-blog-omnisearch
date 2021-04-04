@@ -36,7 +36,7 @@ const SuggestUnit: React.FC<Prop> = ({
       state,
       country,
       id,
-      slug
+      slug,
     });
   };
 

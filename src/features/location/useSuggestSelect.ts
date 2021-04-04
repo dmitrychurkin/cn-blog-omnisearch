@@ -16,17 +16,23 @@ export default function useSuggestSelect() {
         .set(SuggestionTypeEnum.NEARBY, () => {
           redirect(SuggestionTypeEnum.NEARBY);
         })
-        .set(SuggestionTypeEnum.HOTEL, (suggestionPayload: SuggestPayloadType) => {
-          dispatch(suggestion(suggestionPayload));
-          redirect(SuggestionTypeEnum.HOTEL);
-        })
+        .set(
+          SuggestionTypeEnum.HOTEL,
+          (suggestionPayload: SuggestPayloadType) => {
+            dispatch(suggestion(suggestionPayload));
+            redirect(SuggestionTypeEnum.HOTEL);
+          }
+        )
         .set(SuggestionTypeEnum.VR, (suggestionPayload: SuggestPayloadType) => {
           dispatch(suggestion(suggestionPayload));
           redirect(SuggestionTypeEnum.VR);
         })
-        .set(SuggestionTypeEnum.DEFAULT, (suggestionPayload: SuggestPayloadType) => {
-          dispatch(suggestion(suggestionPayload));
-        });
+        .set(
+          SuggestionTypeEnum.DEFAULT,
+          (suggestionPayload: SuggestPayloadType) => {
+            dispatch(suggestion(suggestionPayload));
+          }
+        );
 
       const { type = SuggestionTypeEnum.DEFAULT } = suggest;
 
