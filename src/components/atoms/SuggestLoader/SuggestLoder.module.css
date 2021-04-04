@@ -1,0 +1,16 @@
+.root {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    padding-left: .625rem;
+    padding-right: .625rem;
+}
+
+.icon {
+    padding: .938rem;
+}
+
+.text {
+    display: grid;
+    align-items: center;
+    align-content: center;
+}

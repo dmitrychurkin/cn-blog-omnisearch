@@ -2,11 +2,11 @@ import React, { memo } from 'react';
 
 import styles from './Title.module.css';
 
-type Props = {
+type Prop = {
     readonly children: React.ReactNode;
 };
 
-const Title: React.FC<Props> = ({ children }) => (
+const Title: React.FC<Prop> = ({ children }) => (
     <div className={styles.root}>{children}</div>
 );
 

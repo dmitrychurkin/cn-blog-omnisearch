@@ -1,7 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IGuestBase } from "./IGuestBase";
 import { IGuestState } from "./IGuestState";
 
 const initialState: IGuestState = {
+    isFocus: false,
     adult: 0,
     child: 0,
     infant: 0
@@ -11,36 +13,17 @@ const guestSlice = createSlice({
     name: 'guest',
     initialState,
     reducers: {
-        adultIncrement: state => {
-            state.adult += 1;
+        focus: state => {
+            state.isFocus = !state.isFocus;
         },
-        adultDecrement: state => {
-            state.adult -= 1;
+        change: (state, { payload: { adult, child, infant } }: PayloadAction<IGuestBase>) => {
+            state.adult = adult;
+            state.child = child;
+            state.infant = infant;
         },
-
-        childIncrement: state => {
-            state.child += 1;
-        },
-        childDecrement: state => {
-            state.child -= 1;
-        },
-
-        infantIncrement: state => {
-            state.infant += 1;
-        },
-        infantDecrement: state => {
-            state.infant -= 1;
-        }
     }
 });
 
-export const {
-    adultDecrement,
-    adultIncrement,
-    childDecrement,
-    childIncrement,
-    infantDecrement,
-    infantIncrement
-} = guestSlice.actions;
+export const { change, focus } = guestSlice.actions;
 
 export default guestSlice.reducer;

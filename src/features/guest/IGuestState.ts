@@ -1,5 +1,5 @@
-export interface IGuestState {
-    adult: number;
-    child: number;
-    infant: number;
+import { IGuestBase } from "./IGuestBase";
+
+export interface IGuestState extends IGuestBase {
+    isFocus: boolean;
 }

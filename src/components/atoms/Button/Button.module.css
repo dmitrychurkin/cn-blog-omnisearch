@@ -12,10 +12,26 @@
     font-weight: 500;
     padding: .875rem;
     font-size: 1rem;
-    margin-top: 1.25rem;
     outline: 0;
+    cursor: pointer;
+}
+
+.root:disabled {
+    cursor: initial;
 }
 
 .primary {
     background-color: var(--color-vibrant-pink);
+}
+
+.text {
+    background-color: transparent;
+}
+
+.icon {
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,8 +1,9 @@
 import React from "react";
-import { ColorEnum, VariantEnum } from "./Button.enum";
+import { ButtonColorEnum } from "./ButtonColorEnum";
+import { ButtonVariantEnum } from "./ButtonVariantEnum";
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    readonly variant?: VariantEnum;
-    readonly color?: ColorEnum;
+    readonly variant?: ButtonVariantEnum;
+    readonly color?: ButtonColorEnum;
     readonly startIcon?: JSX.Element;
 }

@@ -1,0 +1,10 @@
+.root {
+    position: relative;
+    grid-column: 1 / span 3;
+}
+
+@media (min-width: 600px) {
+    .root {
+        grid-column: initial;
+    }
+}

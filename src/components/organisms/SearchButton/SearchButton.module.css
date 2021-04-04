@@ -1,0 +1,13 @@
+.root {
+    margin-top: 1.25rem;
+    background-image: linear-gradient(92.14deg, #F35597 1.79%, #F53959 99.81%);
+    padding-top: .563rem;
+}
+
+@media (min-width: 600px) {
+    .root {
+        padding-bottom: .563rem;
+        max-width: 7.438rem;
+        margin-left: auto;
+    }
+}

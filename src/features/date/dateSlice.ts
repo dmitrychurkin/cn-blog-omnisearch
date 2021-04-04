@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IDateInputFocusPayload } from "../../components/atoms/DateInput/IDateInputFocusPayload";
-import { IDateInputPayload } from "../../components/atoms/DateInput/IDateInputPayload";
+import { DateInputFocusPayloadType } from "../../components/molecules/DateInput/DateInputFocusPayloadType";
+import { IDateInputPayload } from "../../components/molecules/DateInput/IDateInputPayload";
 import { IDateState } from './IDateState';
 
 const initialState: IDateState = {
@@ -17,7 +17,7 @@ const dateSlice = createSlice({
             state.checkIn = startDate;
             state.checkOut = endDate
         },
-        focus: (state, action: PayloadAction<IDateInputFocusPayload>) => {
+        focus: (state, action: PayloadAction<DateInputFocusPayloadType>) => {
             state.currentFocus = action.payload;
         }
     }

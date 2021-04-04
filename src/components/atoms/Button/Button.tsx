@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import clsx from 'clsx';
 import { IButtonProps } from './IButtonProps';
+import { ButtonVariantEnum } from './ButtonVariantEnum';
+import { ButtonColorEnum } from './ButtonColorEnum';
 
 import styles from './Button.module.css';
-import { ColorEnum, VariantEnum } from './Button.enum';
 
 const Button: React.FC<IButtonProps> = ({
     className,
@@ -17,10 +18,10 @@ const Button: React.FC<IButtonProps> = ({
         {...rest}
         className={clsx(
             'omnisearch-button',
-            className,
             styles.root,
-            styles[variant ?? VariantEnum.CONTAINED],
-            styles[color ?? ColorEnum.PRIMARY]
+            styles[variant ?? ButtonVariantEnum.CONTAINED],
+            styles[color ?? ButtonColorEnum.PRIMARY],
+            className
         )}
     >
         {StartIcon}

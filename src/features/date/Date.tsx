@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import DateInput from '../../components/atoms/DateInput';
-import { IDateInputFocusPayload } from '../../components/atoms/DateInput/IDateInputFocusPayload';
-import { IDateInputPayload } from '../../components/atoms/DateInput/IDateInputPayload';
+import DateInput from '../../components/molecules/DateInput';
+import { DateInputFocusPayloadType } from '../../components/molecules/DateInput/DateInputFocusPayloadType';
+import { IDateInputPayload } from '../../components/molecules/DateInput/IDateInputPayload';
 import { ReactComponent as CalendarIcon } from '../../icons/Dates.svg';
 import { dates, focus } from './dateSlice';
 
@@ -14,7 +14,7 @@ const Date: React.FC = () => {
         dispatch(dates(datePayload));
     }, [dispatch]);
 
-    const onFocusChange = useCallback((focusedInput: IDateInputFocusPayload) => {
+    const onFocusChange = useCallback((focusedInput: DateInputFocusPayloadType) => {
         dispatch(focus(focusedInput));
     }, [dispatch]);
 

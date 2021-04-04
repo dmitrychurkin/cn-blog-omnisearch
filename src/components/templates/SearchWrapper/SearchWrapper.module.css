@@ -5,11 +5,17 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
     border-radius: var(--radius-default);
+    transition: box-shadow .3s ease-in-out;
+    position: relative;
+}
+
+.active {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, .15);
 }
 
 @media (min-width: 600px) {
     .root {
-        display: initial;
+        grid-template-columns: 1fr repeat(2, max-content);
+        grid-template-rows: initial;
     }
 }

@@ -1,0 +1,32 @@
+.root {
+    column-gap: 0;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    font-weight: normal;
+    background-color: var(--color-field-grey);
+    transition: background-color .3s ease-in-out;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: var(--color-subtle-grey);
+    min-width: 8.5rem;
+}
+
+.focus {
+    background-color: var(--color-white);
+}
+
+.active {
+    color: var(--color-black);
+}
+
+@media (min-width: 600px) {
+    .root {
+        border-top-right-radius: var(--radius-default);
+        border-bottom-right-radius: var(--radius-default);
+    }
+}
