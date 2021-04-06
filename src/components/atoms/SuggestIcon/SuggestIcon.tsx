@@ -5,6 +5,7 @@ import { ReactComponent as LocationFilled } from "../../../icons/Location-filled
 import { ReactComponent as BedFilled } from "../../../icons/Bed-filled.svg";
 import { ReactComponent as HomeFilled } from "../../../icons/Home-filled.svg";
 import { ReactComponent as StarFilled } from "../../../icons/Star-filled.svg";
+import { ReactComponent as ClockFilled } from "../../../icons/Clock-filled.svg";
 
 const suggestIconCollection = new Map<string, React.FC>([
   [SuggestionTypeEnum.AIRPORT, AirplaneFilled],
@@ -14,6 +15,7 @@ const suggestIconCollection = new Map<string, React.FC>([
   [SuggestionTypeEnum.COUNTRY, LocationFilled],
   [SuggestionTypeEnum.HOTEL, BedFilled],
   [SuggestionTypeEnum.VR, HomeFilled],
+  [SuggestionTypeEnum.RECENT, ClockFilled],
   [SuggestionTypeEnum.NEARBY, LocationFilled],
   [SuggestionTypeEnum.DEFAULT, StarFilled],
 ]);

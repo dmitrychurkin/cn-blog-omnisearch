@@ -7,6 +7,7 @@ export enum SuggestionTypeEnum {
   VR = "VR",
   AIRPORT = "Airport",
   // extended
-  NEARBY = "NEARBY",
+  NEARBY = "near",
+  RECENT = "RECENT",
   DEFAULT = "DEFAULT",
 }

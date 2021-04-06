@@ -28,6 +28,7 @@ import { ReactComponent as LocationIcon } from "../../icons/Location-outlined.sv
 
 import styles from "./Location.module.css";
 import { constructLocationString } from "../../app/util";
+import useRecentSearch from "./useRecentSearch";
 
 const Location: React.FC = () => {
   const isLocationPristine = useRef(true);
@@ -43,6 +44,7 @@ const Location: React.FC = () => {
   } = useAppSelector((state) => state.location);
 
   const suggestionSelectHandler = useSuggestSelect();
+  const { getRecentSearch } = useRecentSearch();
 
   const onChange = useCallback(
     ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -106,6 +108,44 @@ const Location: React.FC = () => {
     if (!isLocationPristine.current) {
       return {
         ...baseProp,
+        suggestions: getRecentSearch().reduce((acc, it) => {
+          const id = it?.addrData?.id;
+          const slug = it?.addrData?.slug;
+          const type = it?.addrData?.type;
+          const formattedAddress = it?.addrData?.formattedAddress;
+
+          const adult = it?.guests?.adults || 1;
+          const child = it?.guests?.childrenVr || 0;
+          const infant = it?.guests?.infants || 0;
+
+          const checkIn = it?.startDate || null;
+          const checkOut = it?.endDate || null;
+
+          if (formattedAddress) {
+            const [name, city, state, country] = formattedAddress.split(',')
+              .map((item: string) => item.trim())
+              .filter((w: string) => w);
+
+            return [
+              ...acc,
+              {
+                id,
+                slug,
+                type,
+                name: name || city || state || country,
+                city,
+                state,
+                country,
+                adult,
+                child,
+                infant,
+                checkIn,
+                checkOut
+              }
+            ];
+          }
+          return acc;
+        }, []),
         mode: SuggestModeEnum.RECENT_SEARCH,
       };
     }
@@ -120,6 +160,7 @@ const Location: React.FC = () => {
     suggestionEnities,
     suggestionEnitiesFetchState,
     suggestionEnitiesNearby,
+    getRecentSearch
   ]);
 
   // user current location

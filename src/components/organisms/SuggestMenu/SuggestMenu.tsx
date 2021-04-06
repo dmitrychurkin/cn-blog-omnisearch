@@ -12,22 +12,14 @@ import styles from "./SuggestMenu.module.css";
 
 import "./SuggestMenu.css";
 import { SuggestPayloadType } from "../../molecules/SuggestUnit/SuggestPayloadType";
-
-// type SuggestionType = {
-//   readonly id?: string;
-//   readonly slug?: string;
-//   readonly type?: SuggestionTypeEnum;
-//   readonly city?: string;
-//   readonly name: string;
-//   readonly country: string;
-//   readonly state: string;
-// };
+import { IDateBase } from "../../../features/date/IDateBase";
+import { IGuestBase } from "../../../features/guest/IGuestBase";
 
 type Prop = {
-  readonly suggestions: Array<SuggestPayloadType>;
+  readonly suggestions: Array<SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase>>;
   readonly locationInput: string;
   readonly mode: SuggestModeEnum;
-  readonly onSelect: (arg: SuggestPayloadType) => void;
+  readonly onSelect: (arg: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => void;
 };
 
 const SuggestMenu: React.FC<Prop> = ({
@@ -40,19 +32,25 @@ const SuggestMenu: React.FC<Prop> = ({
 
   const getSuggestUnit = useCallback(
     (customSuggestionType?: SuggestionTypeEnum) => (
-      { id, slug, type, name, country, state, city }: SuggestPayloadType,
+      { id, slug, type, name, country, state, city, adult, child, infant, checkIn, checkOut }: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase>,
       index: number
     ) => (
       <SuggestUnit
         key={id ?? String(index)}
         id={id}
         slug={slug}
-        type={customSuggestionType ?? type}
+        type={type ?? SuggestionTypeEnum.NEARBY}
+        strategyType={customSuggestionType ?? type}
         name={name}
         country={country}
         state={state}
         city={city}
         locationInput={locationInput}
+        adult={adult}
+        child={child}
+        infant={infant}
+        checkIn={checkIn}
+        checkOut={checkOut}
         onSelect={onSelect}
       />
     ),
@@ -132,19 +130,22 @@ const SuggestMenu: React.FC<Prop> = ({
           locationInput=""
           onSelect={onSelect}
         />
-        {/* TODO please enable once implemented
-                <div className={styles.title}>recent searches</div>
-                <SimpleBar
-                    className={clsx(
-                        defaultGlobalClassName,
-                        `${defaultGlobalClassName}--suggest`,
-                        styles.suggest,
-                        styles.suggestRecent
-                    )}
-                    forceVisible="y"
-                >
-                    {suggestions.map(getSuggestUnit(SuggestionTypeEnum.RECENT))}
-                </SimpleBar> */}
+        {suggestions.length > 0 && (
+          <>
+            <div className={styles.title}>recent searches</div>
+            <SimpleBar
+              className={clsx(
+                defaultGlobalClassName,
+                `${defaultGlobalClassName}--suggest`,
+                styles.suggest,
+                styles.suggestRecent
+              )}
+              forceVisible="y"
+            >
+              {suggestions.map(getSuggestUnit(SuggestionTypeEnum.RECENT))}
+            </SimpleBar>
+          </>
+        )}
       </div>,
     ],
   ]);

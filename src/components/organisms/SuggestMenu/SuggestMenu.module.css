@@ -30,12 +30,17 @@
 .recent {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-  max-height: 20.8rem;
+  max-height: 22.188rem;
 }
 
 .suggestRecommended,
 .suggestRecent {
   padding-top: 0;
+}
+
+.suggestRecent {
+  max-height: 17.5rem;
+  padding-bottom: 0;
 }
 
 .title {

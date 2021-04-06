@@ -1,8 +1,6 @@
-import type { Moment } from "moment";
 import { FocusedInputShape } from "react-dates";
+import { IDateBase } from "./IDateBase";
 
-export interface IDateState {
-  checkIn: Moment | null;
-  checkOut: Moment | null;
+export interface IDateState extends IDateBase {
   currentFocus: FocusedInputShape | null;
 }
