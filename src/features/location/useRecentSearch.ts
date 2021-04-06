@@ -88,13 +88,15 @@ export default function useRecentSearch() {
         return;
       }
 
-      let seletedSuggestion:  Partial<SuggestPayloadType>;
-      if (data?.strategyType === SuggestionTypeEnum.NEARBY ||
-            dataToSet.type === SuggestionTypeEnum.NEARBY) {
+      let seletedSuggestion: Partial<SuggestPayloadType>;
+      if (
+        data?.strategyType === SuggestionTypeEnum.NEARBY ||
+        dataToSet.type === SuggestionTypeEnum.NEARBY
+      ) {
         seletedSuggestion = { city, country };
-      }else if (dataToSet.type === SuggestionTypeEnum.COUNTRY) {
+      } else if (dataToSet.type === SuggestionTypeEnum.COUNTRY) {
         seletedSuggestion = { country: name };
-      }else {
+      } else {
         seletedSuggestion = { name, city, state, country };
       }
 

@@ -192,7 +192,12 @@ const Location: React.FC = () => {
     const { seletedSuggestion } = store.getState().location;
     if (
       seletedSuggestion &&
-      location !== constructLocationString(seletedSuggestion.type === SuggestionTypeEnum.COUNTRY ? { country: seletedSuggestion.country } : seletedSuggestion)
+      location !==
+        constructLocationString(
+          seletedSuggestion.type === SuggestionTypeEnum.COUNTRY
+            ? { country: seletedSuggestion.country }
+            : seletedSuggestion
+        )
     ) {
       dispatch(suggestion());
     }

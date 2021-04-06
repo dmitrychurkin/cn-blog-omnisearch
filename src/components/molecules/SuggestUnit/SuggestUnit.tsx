@@ -56,7 +56,7 @@ const SuggestUnit: React.FC<Prop> = ({
         .join(" ");
     }
     if (type === SuggestionTypeEnum.COUNTRY) {
-      return '';
+      return "";
     }
     return constructLocationString({ city, state, country });
   }, [
@@ -69,7 +69,7 @@ const SuggestUnit: React.FC<Prop> = ({
     adult,
     child,
     infant,
-    type
+    type,
   ]);
 
   const onClick = () => {

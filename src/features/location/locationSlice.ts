@@ -176,9 +176,10 @@ const locationSlice = createSlice({
       state.seletedSuggestion = payload;
 
       if (typeof payload !== "undefined") {
-        state.location = (payload.type === SuggestionTypeEnum.COUNTRY)
-          ? payload.country || payload.name
-          : constructLocationString(payload);
+        state.location =
+          payload.type === SuggestionTypeEnum.COUNTRY
+            ? payload.country || payload.name
+            : constructLocationString(payload);
       }
     },
     resetSuggestions: (state) => {
