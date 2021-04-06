@@ -10,7 +10,10 @@ export const constructLocationString = (
     .filter((w) => w)
     .join(separator);
 
-export const validateDate = (date1: Moment | null | undefined, date2: Moment | null | undefined) => {
+export const validateDate = (
+  date1: Moment | null | undefined,
+  date2: Moment | null | undefined
+) => {
   const constrainedDate1 = moment(date1);
   if (!date1 || !constrainedDate1.isValid()) {
     return false;
@@ -22,6 +25,6 @@ export const validateDate = (date1: Moment | null | undefined, date2: Moment | n
   }
 
   return constrainedDate1
-    .startOf('day')
-    .isSameOrBefore(constrainedDate2.startOf('day'));
+    .startOf("day")
+    .isSameOrBefore(constrainedDate2.startOf("day"));
 };

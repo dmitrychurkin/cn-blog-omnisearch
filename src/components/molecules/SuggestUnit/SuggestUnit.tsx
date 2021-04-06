@@ -11,11 +11,17 @@ import { SuggestPayloadType } from "./SuggestPayloadType";
 
 import styles from "./SuggestUnit.module.css";
 
-type Prop = SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & {
-  readonly locationInput: string;
-  readonly onSelect: (arg: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => void;
-  readonly strategyType?: SuggestionTypeEnum | undefined;
-};
+type Prop = SuggestPayloadType &
+  Partial<IDateBase> &
+  Partial<IGuestBase> & {
+    readonly locationInput: string;
+    readonly onSelect: (
+      arg: SuggestPayloadType &
+        Partial<IDateBase> &
+        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
+    ) => void;
+    readonly strategyType?: SuggestionTypeEnum | undefined;
+  };
 
 const SuggestUnit: React.FC<Prop> = ({
   type,
@@ -32,33 +38,35 @@ const SuggestUnit: React.FC<Prop> = ({
   checkIn,
   checkOut,
   onSelect,
-  strategyType
+  strategyType,
 }) => {
-  const address = useMemo(
-    () => {
-      if (strategyType === SuggestionTypeEnum.RECENT) {
-        const guestsCount = (adult || 1) + (child || 0) + (infant || 0);
+  const address = useMemo(() => {
+    if (strategyType === SuggestionTypeEnum.RECENT) {
+      const guestsCount = (adult || 1) + (child || 0) + (infant || 0);
 
-        return [
-          moment(checkIn).isValid() && moment(checkOut).isValid() ? `${moment(checkIn).format('DD MMM')} - ${moment(checkOut).format('DD MMM')}` : '',
-          `${guestsCount} guest${(guestsCount > 1) ? 's' : ''}`
-        ].filter(w => w)
-        .join(' ');
-      }
-      return constructLocationString({ city, state, country })
-    },
-    [
-      city,
-      state,
-      country,
-      strategyType,
-      checkIn,
-      checkOut,
-      adult,
-      child,
-      infant
-    ]
-  );
+      return [
+        moment(checkIn).isValid() && moment(checkOut).isValid()
+          ? `${moment(checkIn).format("DD MMM")} - ${moment(checkOut).format(
+              "DD MMM"
+            )}`
+          : "",
+        `${guestsCount} guest${guestsCount > 1 ? "s" : ""}`,
+      ]
+        .filter((w) => w)
+        .join(" ");
+    }
+    return constructLocationString({ city, state, country });
+  }, [
+    city,
+    state,
+    country,
+    strategyType,
+    checkIn,
+    checkOut,
+    adult,
+    child,
+    infant,
+  ]);
 
   const onClick = () => {
     onSelect({
@@ -74,7 +82,7 @@ const SuggestUnit: React.FC<Prop> = ({
       infant,
       checkIn,
       checkOut,
-      strategyType: strategyType ?? type
+      strategyType: strategyType ?? type,
     });
   };
 

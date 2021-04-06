@@ -22,25 +22,38 @@ export const useRedirect = () => {
   const store = useAppStore();
   const { updateRecentSearch } = useRecentSearch();
 
-  const getSearchQueryParamsMap = useCallback(({ location, checkin, checkout, adults, children, infants, rooms }: {
-    location: string;
-    checkin: Moment | null | undefined;
-    checkout: Moment | null | undefined;
-    adults: number;
-    children: number;
-    infants: number;
-    rooms: number;
-  }) => {
-    const [startDate, endDate] = validateDate(checkin, checkout) ? [checkin, checkout] : [moment(), moment().add(1, 'day')];
-    return new Map<SearchQueryParamsType, string>()
-      .set('location', location)
-      .set('checkin', moment(startDate).format('YYYY-MM-DD'))
-      .set('checkout', moment(endDate).format('YYYY-MM-DD'))
-      .set('adults', String(adults || 1))
-      .set('children', String(children))
-      .set('infants', String(infants))
-      .set('rooms', String(rooms));
-  }, []);
+  const getSearchQueryParamsMap = useCallback(
+    ({
+      location,
+      checkin,
+      checkout,
+      adults,
+      children,
+      infants,
+      rooms,
+    }: {
+      location: string;
+      checkin: Moment | null | undefined;
+      checkout: Moment | null | undefined;
+      adults: number;
+      children: number;
+      infants: number;
+      rooms: number;
+    }) => {
+      const [startDate, endDate] = validateDate(checkin, checkout)
+        ? [checkin, checkout]
+        : [moment(), moment().add(1, "day")];
+      return new Map<SearchQueryParamsType, string>()
+        .set("location", location)
+        .set("checkin", moment(startDate).format("YYYY-MM-DD"))
+        .set("checkout", moment(endDate).format("YYYY-MM-DD"))
+        .set("adults", String(adults || 1))
+        .set("children", String(children))
+        .set("infants", String(infants))
+        .set("rooms", String(rooms));
+    },
+    []
+  );
 
   const getBaseUri = useCallback(
     (suggestionType?: SuggestionTypeEnum) => {
@@ -125,7 +138,7 @@ export const useRedirect = () => {
         adults: adult,
         children: child,
         infants: infant,
-        rooms: 1
+        rooms: 1,
       });
 
       additionalSearchQueryParams?.forEach((value, key) => {
@@ -141,7 +154,14 @@ export const useRedirect = () => {
     () =>
       new Map<
         SuggestionTypeEnum,
-        (strategy: SuggestionTypeEnum, manualSuggestionPayload?: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => string | undefined
+        (
+          strategy: SuggestionTypeEnum,
+          manualSuggestionPayload?: SuggestPayloadType &
+            Partial<IDateBase> &
+            Partial<IGuestBase> & {
+              strategyType: SuggestionTypeEnum | undefined;
+            }
+        ) => string | undefined
       >()
         .set(SuggestionTypeEnum.NEARBY, (strategy: SuggestionTypeEnum) => {
           const {
@@ -158,36 +178,71 @@ export const useRedirect = () => {
             strategy
           );
 
-          updateRecentSearch({ type: SuggestionTypeEnum.NEARBY, strategyType: SuggestionTypeEnum.NEARBY });
+          updateRecentSearch({
+            type: SuggestionTypeEnum.NEARBY,
+            strategyType: SuggestionTypeEnum.NEARBY,
+          });
           return redirectLink;
         })
-        .set(SuggestionTypeEnum.RECENT, (strategy: SuggestionTypeEnum, manualSuggestionPayload?: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => {
-          if (manualSuggestionPayload) {
-            const { name, city, state, country, checkIn, checkOut, adult = 1, child = 0, infant = 0 } = manualSuggestionPayload;
+        .set(
+          SuggestionTypeEnum.RECENT,
+          (
+            strategy: SuggestionTypeEnum,
+            manualSuggestionPayload?: SuggestPayloadType &
+              Partial<IDateBase> &
+              Partial<IGuestBase> & {
+                strategyType: SuggestionTypeEnum | undefined;
+              }
+          ) => {
+            if (manualSuggestionPayload) {
+              const {
+                name,
+                city,
+                state,
+                country,
+                checkIn,
+                checkOut,
+                adult = 1,
+                child = 0,
+                infant = 0,
+              } = manualSuggestionPayload;
 
-            const redirectLink = getRedirectLink(
-              getSearchQueryParamsMap({
-                location: constructLocationString({ name, city, state, country}),
-                checkin: checkIn,
-                checkout: checkOut,
-                adults: adult,
-                children: child,
-                infants: infant,
-                rooms: 1
-              }),
-              strategy
-            );
+              const redirectLink = getRedirectLink(
+                getSearchQueryParamsMap({
+                  location: constructLocationString({
+                    name,
+                    city,
+                    state,
+                    country,
+                  }),
+                  checkin: checkIn,
+                  checkout: checkOut,
+                  adults: adult,
+                  children: child,
+                  infants: infant,
+                  rooms: 1,
+                }),
+                strategy
+              );
 
-            updateRecentSearch(manualSuggestionPayload);
-            return redirectLink;
+              updateRecentSearch(manualSuggestionPayload);
+              return redirectLink;
+            }
+            return "";
           }
-          return '';
-        })
+        )
         .set(SuggestionTypeEnum.DEFAULT, (strategy: SuggestionTypeEnum) => {
-          const redirectLink = getRedirectLink(getSearchQueryParams(), strategy);
-          if (typeof redirectLink === "string" &&
-              redirectLink.length > 0 &&
-              ![SuggestionTypeEnum.HOTEL, SuggestionTypeEnum.VR].includes(strategy)) {
+          const redirectLink = getRedirectLink(
+            getSearchQueryParams(),
+            strategy
+          );
+          if (
+            typeof redirectLink === "string" &&
+            redirectLink.length > 0 &&
+            ![SuggestionTypeEnum.HOTEL, SuggestionTypeEnum.VR].includes(
+              strategy
+            )
+          ) {
             updateRecentSearch();
           }
           return redirectLink;
@@ -197,16 +252,24 @@ export const useRedirect = () => {
       getRedirectLink,
       getSearchQueryParams,
       getSearchQueryParamsMap,
-      updateRecentSearch
+      updateRecentSearch,
     ]
   );
 
   return useCallback(
-    (strategy: SuggestionTypeEnum, manualSuggestionPayload?: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => {
+    (
+      strategy: SuggestionTypeEnum,
+      manualSuggestionPayload?: SuggestPayloadType &
+        Partial<IDateBase> &
+        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
+    ) => {
       const linkGeneratedStrategy =
         generateLinkStrategies.get(strategy) ||
         generateLinkStrategies.get(SuggestionTypeEnum.DEFAULT);
-      const redirectLink = linkGeneratedStrategy?.(strategy, manualSuggestionPayload);
+      const redirectLink = linkGeneratedStrategy?.(
+        strategy,
+        manualSuggestionPayload
+      );
       if (typeof redirectLink === "string" && redirectLink.length > 0) {
         window.open(redirectLink, "_self");
       }

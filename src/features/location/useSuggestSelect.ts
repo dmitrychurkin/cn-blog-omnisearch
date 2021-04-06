@@ -10,7 +10,11 @@ export default function useSuggestSelect() {
   const dispatch = useAppDispatch();
   const redirect = useRedirect();
   return useCallback(
-    (suggest: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => {
+    (
+      suggest: SuggestPayloadType &
+        Partial<IDateBase> &
+        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
+    ) => {
       const { strategyType, ...restSuggestionProps } = suggest;
       if (strategyType !== SuggestionTypeEnum.NEARBY) {
         dispatch(suggestion(restSuggestionProps));
@@ -22,7 +26,7 @@ export default function useSuggestSelect() {
           SuggestionTypeEnum.NEARBY,
           SuggestionTypeEnum.HOTEL,
           SuggestionTypeEnum.VR,
-          SuggestionTypeEnum.RECENT
+          SuggestionTypeEnum.RECENT,
         ].includes(strategyType)
       ) {
         redirect(strategyType, suggest);

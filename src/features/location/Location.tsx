@@ -122,7 +122,8 @@ const Location: React.FC = () => {
           const checkOut = it?.endDate || null;
 
           if (formattedAddress) {
-            const [name, city, state, country] = formattedAddress.split(',')
+            const [name, city, state, country] = formattedAddress
+              .split(",")
               .map((item: string) => item.trim())
               .filter((w: string) => w);
 
@@ -140,8 +141,8 @@ const Location: React.FC = () => {
                 child,
                 infant,
                 checkIn,
-                checkOut
-              }
+                checkOut,
+              },
             ];
           }
           return acc;
@@ -160,7 +161,7 @@ const Location: React.FC = () => {
     suggestionEnities,
     suggestionEnitiesFetchState,
     suggestionEnitiesNearby,
-    getRecentSearch
+    getRecentSearch,
   ]);
 
   // user current location

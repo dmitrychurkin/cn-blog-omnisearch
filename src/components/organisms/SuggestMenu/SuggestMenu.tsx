@@ -16,10 +16,16 @@ import { IDateBase } from "../../../features/date/IDateBase";
 import { IGuestBase } from "../../../features/guest/IGuestBase";
 
 type Prop = {
-  readonly suggestions: Array<SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase>>;
+  readonly suggestions: Array<
+    SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase>
+  >;
   readonly locationInput: string;
   readonly mode: SuggestModeEnum;
-  readonly onSelect: (arg: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }) => void;
+  readonly onSelect: (
+    arg: SuggestPayloadType &
+      Partial<IDateBase> &
+      Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
+  ) => void;
 };
 
 const SuggestMenu: React.FC<Prop> = ({
@@ -32,7 +38,20 @@ const SuggestMenu: React.FC<Prop> = ({
 
   const getSuggestUnit = useCallback(
     (customSuggestionType?: SuggestionTypeEnum) => (
-      { id, slug, type, name, country, state, city, adult, child, infant, checkIn, checkOut }: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase>,
+      {
+        id,
+        slug,
+        type,
+        name,
+        country,
+        state,
+        city,
+        adult,
+        child,
+        infant,
+        checkIn,
+        checkOut,
+      }: SuggestPayloadType & Partial<IDateBase> & Partial<IGuestBase>,
       index: number
     ) => (
       <SuggestUnit
