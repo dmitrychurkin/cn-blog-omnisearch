@@ -88,11 +88,15 @@ export default function useRecentSearch() {
         return;
       }
 
-      const seletedSuggestion =
-        data?.strategyType === SuggestionTypeEnum.NEARBY ||
-        dataToSet.type === SuggestionTypeEnum.NEARBY
-          ? { city, country }
-          : { name, city, state, country };
+      let seletedSuggestion:  Partial<SuggestPayloadType>;
+      if (data?.strategyType === SuggestionTypeEnum.NEARBY ||
+            dataToSet.type === SuggestionTypeEnum.NEARBY) {
+        seletedSuggestion = { city, country };
+      }else if (dataToSet.type === SuggestionTypeEnum.COUNTRY) {
+        seletedSuggestion = { country: name };
+      }else {
+        seletedSuggestion = { name, city, state, country };
+      }
 
       const filteredState = getRecentSearch().filter((it) => {
         if (id && it?.addrData?.id === id) {

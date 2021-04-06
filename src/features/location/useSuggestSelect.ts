@@ -16,6 +16,7 @@ export default function useSuggestSelect() {
         Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
     ) => {
       const { strategyType, ...restSuggestionProps } = suggest;
+
       if (strategyType !== SuggestionTypeEnum.NEARBY) {
         dispatch(suggestion(restSuggestionProps));
       }

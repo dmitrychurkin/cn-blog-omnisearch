@@ -29,6 +29,7 @@ import { ReactComponent as LocationIcon } from "../../icons/Location-outlined.sv
 import styles from "./Location.module.css";
 import { constructLocationString } from "../../app/util";
 import useRecentSearch from "./useRecentSearch";
+import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
 
 const Location: React.FC = () => {
   const isLocationPristine = useRef(true);
@@ -191,7 +192,7 @@ const Location: React.FC = () => {
     const { seletedSuggestion } = store.getState().location;
     if (
       seletedSuggestion &&
-      location !== constructLocationString(seletedSuggestion)
+      location !== constructLocationString(seletedSuggestion.type === SuggestionTypeEnum.COUNTRY ? { country: seletedSuggestion.country } : seletedSuggestion)
     ) {
       dispatch(suggestion());
     }

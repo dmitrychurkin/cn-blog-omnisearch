@@ -3,6 +3,7 @@ import request from "../../app/api";
 import config from "../../app/config";
 import { RootState } from "../../app/store";
 import { constructLocationString } from "../../app/util";
+import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
 import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/SuggestPayloadType";
 import { FetchStateEnum } from "./FetchStateEnum";
 import { ICurrentLocation } from "./ICurrentLocation";
@@ -173,8 +174,11 @@ const locationSlice = createSlice({
       { payload }: PayloadAction<SuggestPayloadType | undefined>
     ) => {
       state.seletedSuggestion = payload;
+
       if (typeof payload !== "undefined") {
-        state.location = constructLocationString(payload);
+        state.location = (payload.type === SuggestionTypeEnum.COUNTRY)
+          ? payload.country || payload.name
+          : constructLocationString(payload);
       }
     },
     resetSuggestions: (state) => {
