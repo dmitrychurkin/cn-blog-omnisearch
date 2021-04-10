@@ -1,13 +1,20 @@
 import React, { memo, useCallback, useContext, useMemo } from "react";
 import clsx from "clsx";
 import moment, { Moment } from "moment";
-import { IDateInputPayload } from "./IDateInputPayload";
-import { DateInputFocusPayloadType } from "./DateInputFocusPayloadType";
+
 import { DateRangePicker, FocusedInputShape } from "react-dates";
-import { DateInputEnum } from "./DateInputEnum";
-import Button from "../../atoms/Button";
-import { ButtonVariantEnum } from "../../atoms/Button/ButtonVariantEnum";
-import { GlobalCtx, ViewportTypeEnum } from "../../../context/Global";
+
+import Button from "components/atoms/Button";
+import { ButtonVariantEnum } from "components/atoms/Button/ButtonVariantEnum";
+
+import { GlobalCtx, ViewportTypeEnum } from "context/Global";
+
+import { DateInputEnum } from "app/enum/DateInputEnum";
+
+import { IDateInputPayload } from "app/interface/IDateInputPayload";
+
+import { DateInputFocusPayloadType } from "app/type/DateInputFocusPayloadType";
+
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./DateInput.css";

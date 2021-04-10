@@ -1,11 +1,15 @@
 import clsx from "clsx";
 import React, { memo, useCallback } from "react";
-import Button from "../../atoms/Button";
-import { ButtonVariantEnum } from "../../atoms/Button/ButtonVariantEnum";
-import { ReactComponent as MinusIcon } from "../../../icons/Minus.svg";
-import { ReactComponent as PlusIcon } from "../../../icons/Plus.svg";
+
+import Button from "components/atoms/Button";
+import { ButtonVariantEnum } from "components/atoms/Button/ButtonVariantEnum";
+
+import { OperationTypeEnum } from "app/enum/OperationTypeEnum";
+
+import { ReactComponent as MinusIcon } from "icons/Minus.svg";
+import { ReactComponent as PlusIcon } from "icons/Plus.svg";
+
 import styles from "./GuestCounter.module.css";
-import { OperationTypeEnum } from "./OperationTypeEnum";
 
 type Prop = {
   readonly value: number;

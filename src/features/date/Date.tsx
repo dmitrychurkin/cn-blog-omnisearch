@@ -1,10 +1,16 @@
 import React, { memo, useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import DateInput from "../../components/molecules/DateInput";
-import { DateInputFocusPayloadType } from "../../components/molecules/DateInput/DateInputFocusPayloadType";
-import { IDateInputPayload } from "../../components/molecules/DateInput/IDateInputPayload";
-import { ReactComponent as CalendarIcon } from "../../icons/Dates.svg";
+
+import useAppDispatch from "app/hook/useAppDispatch";
+import useAppSelector from "app/hook/useAppSelector";
+
+import DateInput from "components/molecules/DateInput";
+import { DateInputFocusPayloadType } from "app/type/DateInputFocusPayloadType";
+
+import { IDateInputPayload } from "app/interface/IDateInputPayload";
+
 import { dates, focus } from "./dateSlice";
+
+import { ReactComponent as CalendarIcon } from "icons/Dates.svg";
 
 const Date: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -1,13 +1,18 @@
+import React, { memo, useMemo } from "react";
 import clsx from "clsx";
 import moment from "moment";
-import React, { memo, useMemo } from "react";
 import Highlighter from "react-highlight-words";
-import { constructLocationString } from "../../../app/util";
-import { IDateBase } from "../../../features/date/IDateBase";
-import { IGuestBase } from "../../../features/guest/IGuestBase";
-import SuggestionIcon from "../../atoms/SuggestIcon";
-import { SuggestionTypeEnum } from "../../atoms/SuggestIcon/SuggestionTypeEnum";
-import { SuggestPayloadType } from "./SuggestPayloadType";
+
+import { constructLocationString } from "app/util";
+
+import { IDateBase } from "app/interface/IDateBase";
+import { IGuestBase } from "app/interface/IGuestBase";
+
+import SuggestionIcon from "components/atoms/SuggestIcon";
+
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import { SuggestPayloadType } from "app/type/SuggestPayloadType";
+import { SuggestSelectType } from "app/type/SuggestSelectType";
 
 import styles from "./SuggestUnit.module.css";
 
@@ -15,11 +20,7 @@ type Prop = SuggestPayloadType &
   Partial<IDateBase> &
   Partial<IGuestBase> & {
     readonly locationInput: string;
-    readonly onSelect: (
-      arg: SuggestPayloadType &
-        Partial<IDateBase> &
-        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
-    ) => void;
+    readonly onSelect: (arg: SuggestSelectType) => void;
     readonly strategyType?: SuggestionTypeEnum | undefined;
   };
 

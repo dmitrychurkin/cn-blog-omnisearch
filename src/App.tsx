@@ -7,7 +7,7 @@ import Location from "./features/location/Location";
 import Date from "./features/date/Date";
 import Guest from "./features/guest/Guest";
 import SearchButton from "./components/organisms/SearchButton";
-import { useAppSelector } from "./app/hooks";
+import useAppSelector from "./app/hook/useAppSelector";
 
 const App: React.FC = () => {
   const { date, guest, location } = useAppSelector((state) => state);

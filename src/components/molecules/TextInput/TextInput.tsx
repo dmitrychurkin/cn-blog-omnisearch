@@ -1,12 +1,14 @@
 import React, { memo, useCallback, useRef, useState } from "react";
 import clsx from "clsx";
-import { ITextInputProps } from "./ITextInputProps";
-import Button from "../../atoms/Button";
 
-import { ReactComponent as CloseIcon } from "../../../icons/Close.svg";
+import { ButtonVariantEnum } from "components/atoms/Button/ButtonVariantEnum";
+import Button from "components/atoms/Button";
+
+import { ITextInputProps } from "./ITextInputProps";
+
+import { ReactComponent as CloseIcon } from "icons/Close.svg";
 
 import styles from "./TextInput.module.css";
-import { ButtonVariantEnum } from "../../atoms/Button/ButtonVariantEnum";
 
 const TextInput: React.FC<ITextInputProps> = ({
   startIcon: StartIcon,

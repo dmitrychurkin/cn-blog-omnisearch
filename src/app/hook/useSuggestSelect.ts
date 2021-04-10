@@ -1,20 +1,18 @@
 import { useCallback } from "react";
-import { useAppDispatch, useRedirect } from "../../app/hooks";
-import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
-import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/SuggestPayloadType";
-import { IDateBase } from "../date/IDateBase";
-import { IGuestBase } from "../guest/IGuestBase";
-import { suggestion } from "./locationSlice";
+
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import { SuggestSelectType } from "app/type/SuggestSelectType";
+
+import { suggestion } from "features/location/locationSlice";
+
+import useAppDispatch from "./useAppDispatch";
+import useRedirect from "./useRedirect";
 
 export default function useSuggestSelect() {
   const dispatch = useAppDispatch();
   const redirect = useRedirect();
   return useCallback(
-    (
-      suggest: SuggestPayloadType &
-        Partial<IDateBase> &
-        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
-    ) => {
+    (suggest: SuggestSelectType) => {
       const { strategyType, ...restSuggestionProps } = suggest;
 
       if (strategyType !== SuggestionTypeEnum.NEARBY) {

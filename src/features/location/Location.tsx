@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import debounce from "lodash.debounce";
 import clsx from "clsx";
-import TextInput from "../../components/molecules/TextInput";
+
 import {
   fetchLocationsNearby,
   fetchSuggestion,
@@ -18,18 +18,26 @@ import {
   resetSuggestions,
   suggestion,
 } from "./locationSlice";
-import { useAppDispatch, useAppSelector, useAppStore } from "../../app/hooks";
-import { FetchStateEnum } from "./FetchStateEnum";
-import SuggestMenu from "../../components/organisms/SuggestMenu";
-import { SuggestModeEnum } from "../../components/organisms/SuggestMenu/SuggestModeEnum";
-import useSuggestSelect from "./useSuggestSelect";
 
-import { ReactComponent as LocationIcon } from "../../icons/Location-outlined.svg";
+import useAppDispatch from "app/hook/useAppDispatch";
+import useAppSelector from "app/hook/useAppSelector";
+import useAppStore from "app/hook/useAppStore";
+
+import TextInput from "components/molecules/TextInput";
+import SuggestMenu from "components/organisms/SuggestMenu";
+
+import { SuggestModeEnum } from "app/enum/SuggestModeEnum";
+import { FetchStateEnum } from "app/enum/FetchStateEnum";
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+
+import useSuggestSelect from "app/hook/useSuggestSelect";
+import useRecentSearch from "app/hook/useRecentSearch";
+
+import { constructLocationString } from "app/util";
+
+import { ReactComponent as LocationIcon } from "icons/Location-outlined.svg";
 
 import styles from "./Location.module.css";
-import { constructLocationString } from "../../app/util";
-import useRecentSearch from "./useRecentSearch";
-import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
 
 const Location: React.FC = () => {
   const isLocationPristine = useRef(true);

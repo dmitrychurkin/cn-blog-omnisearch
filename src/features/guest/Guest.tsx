@@ -1,11 +1,17 @@
 import React, { memo, useCallback } from "react";
 import clsx from "clsx";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import GuestInput from "../../components/molecules/GuestInput";
-import GuestSelector from "../../components/organisms/GuestSelector";
-import { ReactComponent as GuestIcon } from "../../icons/Person-outlined.svg";
+
+import useAppDispatch from "app/hook/useAppDispatch";
+import useAppSelector from "app/hook/useAppSelector";
+
+import { IGuestBase } from "app/interface/IGuestBase";
+
+import GuestInput from "components/molecules/GuestInput";
+import GuestSelector from "components/organisms/GuestSelector";
+
 import { change, focus } from "./guestSlice";
-import { IGuestBase } from "./IGuestBase";
+
+import { ReactComponent as GuestIcon } from "icons/Person-outlined.svg";
 
 import styles from "./Guest.module.css";
 

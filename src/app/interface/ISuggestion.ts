@@ -1,4 +1,4 @@
-import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
 import { ISuggestionNearby } from "./ISuggestionNearby";
 
 export interface ISuggestion extends ISuggestionNearby {

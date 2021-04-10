@@ -1,10 +1,9 @@
 import { useCallback } from "react";
-import { useAppStore } from "../../app/hooks";
-import { constructLocationString } from "../../app/util";
-import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
-import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/SuggestPayloadType";
-import { IDateBase } from "../date/IDateBase";
-import { IGuestBase } from "../guest/IGuestBase";
+import useAppStore from "./useAppStore";
+import { constructLocationString } from "app/util";
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import { SuggestPayloadType } from "app/type/SuggestPayloadType";
+import { SuggestSelectType } from "app/type/SuggestSelectType";
 
 export default function useRecentSearch() {
   const store = useAppStore();
@@ -21,12 +20,7 @@ export default function useRecentSearch() {
   }, []);
 
   const updateRecentSearch = useCallback(
-    (
-      data?: Partial<SuggestPayloadType> &
-        Partial<IDateBase> &
-        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined },
-      lsKey = "recentSearch"
-    ) => {
+    (data?: Partial<SuggestSelectType>, lsKey = "recentSearch") => {
       const {
         location: { seletedSuggestion: ss, currentLocationEntity },
         date,
@@ -55,18 +49,18 @@ export default function useRecentSearch() {
         delete dataToSet.slug;
         delete dataToSet.state;
       } else if (data?.strategyType === SuggestionTypeEnum.RECENT) {
-        dataToSet.id = data?.id;
-        dataToSet.type = data?.type;
-        dataToSet.slug = data?.slug;
-        dataToSet.name = data?.name;
-        dataToSet.city = data?.city;
-        dataToSet.state = data?.state;
-        dataToSet.country = data?.country;
+        dataToSet.id = data.id;
+        dataToSet.type = data.type;
+        dataToSet.slug = data.slug;
+        dataToSet.name = data.name;
+        dataToSet.city = data.city;
+        dataToSet.state = data.state;
+        dataToSet.country = data.country;
         dataToSet.checkIn = data.checkIn ?? null;
         dataToSet.checkOut = data.checkOut ?? null;
-        dataToSet.adult = data?.adult || 1;
-        dataToSet.child = data?.child || 0;
-        dataToSet.infant = data?.infant || 0;
+        dataToSet.adult = data.adult || 1;
+        dataToSet.child = data.child || 0;
+        dataToSet.infant = data.infant || 0;
       }
 
       const {

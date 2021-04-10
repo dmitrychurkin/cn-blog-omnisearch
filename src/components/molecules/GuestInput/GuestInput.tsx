@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import clsx from "clsx";
-import { ButtonVariantEnum } from "../../atoms/Button/ButtonVariantEnum";
-import Button from "../../atoms/Button";
+
+import { ButtonVariantEnum } from "components/atoms/Button/ButtonVariantEnum";
+import Button from "components/atoms/Button";
 
 import styles from "./GuestInput.module.css";
 

@@ -1,12 +1,12 @@
 import {
   configureStore,
-  ThunkAction,
-  Action,
+  // ThunkAction,
+  // Action,
   getDefaultMiddleware,
 } from "@reduxjs/toolkit";
-import locationReducer from "../features/location/locationSlice";
-import dateReducer from "../features/date/dateSlice";
-import guestReducer from "../features/guest/guestSlice";
+import locationReducer from "features/location/locationSlice";
+import dateReducer from "features/date/dateSlice";
+import guestReducer from "features/guest/guestSlice";
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === "development",
@@ -20,11 +20,9 @@ export const store = configureStore({
   }),
 });
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+// export type AppThunk<ReturnType = void> = ThunkAction<
+//   ReturnType,
+//   RootState,
+//   unknown,
+//   Action<string>
+// >;

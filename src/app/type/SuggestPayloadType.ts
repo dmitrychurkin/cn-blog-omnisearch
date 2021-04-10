@@ -1,4 +1,4 @@
-import { SuggestionTypeEnum } from "../../atoms/SuggestIcon/SuggestionTypeEnum";
+import { SuggestionTypeEnum } from "../enum/SuggestionTypeEnum";
 
 export type SuggestPayloadType = {
   readonly type?: SuggestionTypeEnum;

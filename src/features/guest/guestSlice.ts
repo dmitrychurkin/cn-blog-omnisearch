@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IGuestBase } from "./IGuestBase";
-import { IGuestState } from "./IGuestState";
+
+import { IGuestBase } from "app/interface/IGuestBase";
+import { IGuestState } from "app/interface/IGuestState";
 
 const initialState: IGuestState = {
   isFocus: false,

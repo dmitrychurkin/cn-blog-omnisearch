@@ -1,11 +1,14 @@
 import React, { memo, useCallback } from "react";
 import clsx from "clsx";
-import Button from "../../../components/atoms/Button";
+
+import Button from "components/atoms/Button";
+
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import useRedirect from "app/hook/useRedirect";
+
+import { ReactComponent as SearchIcon } from "icons/Magnifying-glass.svg";
 
 import styles from "./SearchButton.module.css";
-import { ReactComponent as SearchIcon } from "../../../icons/Magnifying-glass.svg";
-import { useRedirect } from "../../../app/hooks";
-import { SuggestionTypeEnum } from "../../atoms/SuggestIcon/SuggestionTypeEnum";
 
 const SearchButton: React.FC = () => {
   const handleRedirect = useRedirect();

@@ -1,5 +1,5 @@
-import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/SuggestPayloadType";
-import { FetchStateEnum } from "./FetchStateEnum";
+import { SuggestPayloadType } from "app/type/SuggestPayloadType";
+import { FetchStateEnum } from "app/enum/FetchStateEnum";
 import { ICurrentLocation } from "./ICurrentLocation";
 import { ISuggestion } from "./ISuggestion";
 import { ISuggestionNearby } from "./ISuggestionNearby";

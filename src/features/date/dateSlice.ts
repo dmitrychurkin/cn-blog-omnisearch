@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DateInputFocusPayloadType } from "../../components/molecules/DateInput/DateInputFocusPayloadType";
-import { IDateInputPayload } from "../../components/molecules/DateInput/IDateInputPayload";
-import { IDateState } from "./IDateState";
+
+import { DateInputFocusPayloadType } from "app/type/DateInputFocusPayloadType";
+import { IDateInputPayload } from "app/interface/IDateInputPayload";
+
+import { IDateState } from "app/interface/IDateState";
 
 const initialState: IDateState = {
   checkIn: null,

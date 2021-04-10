@@ -14,9 +14,9 @@ const request = async (input: RequestInfo, init: RequestInit = {}) => {
   }
 
   return fetch(input, {
+    mode: "cors",
     ...init,
     headers,
-    mode: "cors",
   });
 };
 

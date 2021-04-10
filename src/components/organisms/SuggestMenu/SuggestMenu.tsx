@@ -3,17 +3,20 @@ import React, { memo, useCallback } from "react";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 
-import { SuggestionTypeEnum } from "../../atoms/SuggestIcon/SuggestionTypeEnum";
-import SuggestLoader from "../../atoms/SuggestLoader";
-import SuggestUnit from "../../molecules/SuggestUnit";
-import { SuggestModeEnum } from "./SuggestModeEnum";
+import SuggestLoader from "components/atoms/SuggestLoader";
+import SuggestUnit from "components/molecules/SuggestUnit";
+
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import { SuggestModeEnum } from "app/enum/SuggestModeEnum";
+import { SuggestPayloadType } from "app/type/SuggestPayloadType";
+import { SuggestSelectType } from "app/type/SuggestSelectType";
+
+import { IDateBase } from "app/interface/IDateBase";
+import { IGuestBase } from "app/interface/IGuestBase";
 
 import styles from "./SuggestMenu.module.css";
 
 import "./SuggestMenu.css";
-import { SuggestPayloadType } from "../../molecules/SuggestUnit/SuggestPayloadType";
-import { IDateBase } from "../../../features/date/IDateBase";
-import { IGuestBase } from "../../../features/guest/IGuestBase";
 
 type Prop = {
   readonly suggestions: Array<
@@ -21,11 +24,7 @@ type Prop = {
   >;
   readonly locationInput: string;
   readonly mode: SuggestModeEnum;
-  readonly onSelect: (
-    arg: SuggestPayloadType &
-      Partial<IDateBase> &
-      Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
-  ) => void;
+  readonly onSelect: (arg: SuggestSelectType) => void;
 };
 
 const SuggestMenu: React.FC<Prop> = ({

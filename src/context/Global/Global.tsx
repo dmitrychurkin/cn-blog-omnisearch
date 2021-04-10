@@ -1,7 +1,9 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { IGlobalCtx } from "./IGlobalCtx";
-import { ViewportMinSizeEnum } from "./ViewportMinSizeEnum";
-import { ViewportTypeEnum } from "./ViewportTypeEnum";
+
+import { ViewportMinSizeEnum } from "app/enum/ViewportMinSizeEnum";
+import { ViewportTypeEnum } from "app/enum/ViewportTypeEnum";
+
+import { IGlobalCtx } from "app/interface/IGlobalCtx";
 
 export const GlobalCtx = React.createContext<IGlobalCtx | null>(null);
 

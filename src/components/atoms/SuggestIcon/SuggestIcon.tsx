@@ -1,11 +1,13 @@
 import React, { memo } from "react";
-import { SuggestionTypeEnum } from "./SuggestionTypeEnum";
-import { ReactComponent as AirplaneFilled } from "../../../icons/Airplane-filled.svg";
-import { ReactComponent as LocationFilled } from "../../../icons/Location-filled.svg";
-import { ReactComponent as BedFilled } from "../../../icons/Bed-filled.svg";
-import { ReactComponent as HomeFilled } from "../../../icons/Home-filled.svg";
-import { ReactComponent as StarFilled } from "../../../icons/Star-filled.svg";
-import { ReactComponent as ClockFilled } from "../../../icons/Clock-filled.svg";
+
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+
+import { ReactComponent as AirplaneFilled } from "icons/Airplane-filled.svg";
+import { ReactComponent as LocationFilled } from "icons/Location-filled.svg";
+import { ReactComponent as BedFilled } from "icons/Bed-filled.svg";
+import { ReactComponent as HomeFilled } from "icons/Home-filled.svg";
+import { ReactComponent as StarFilled } from "icons/Star-filled.svg";
+import { ReactComponent as ClockFilled } from "icons/Clock-filled.svg";
 
 const suggestIconCollection = new Map<string, React.FC>([
   [SuggestionTypeEnum.AIRPORT, AirplaneFilled],

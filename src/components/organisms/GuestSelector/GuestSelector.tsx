@@ -1,18 +1,24 @@
-import clsx from "clsx";
 import React, { memo, useCallback, useContext, useEffect, useRef } from "react";
+import clsx from "clsx";
 import ReactModal from "react-modal";
-import { GlobalCtx, ViewportTypeEnum } from "../../../context/Global";
-import { IGuestBase } from "../../../features/guest/IGuestBase";
-import { ReactComponent as CarretIcon } from "../../../icons/Carret.svg";
-import Button from "../../atoms/Button";
-import { ButtonVariantEnum } from "../../atoms/Button/ButtonVariantEnum";
-import GuestCounter from "../../molecules/GuestCounter";
-import { OperationTypeEnum } from "../../molecules/GuestCounter/OperationTypeEnum";
-import { GuestTypeEnum } from "./GuestTypeEnum";
-import useGuestSelect from "./useGuestSelect";
+
+import { GlobalCtx, ViewportTypeEnum } from "context/Global";
+
+import { IGuestBase } from "app/interface/IGuestBase";
+
+import Button from "components/atoms/Button";
+import { ButtonVariantEnum } from "components/atoms/Button/ButtonVariantEnum";
+import GuestCounter from "components/molecules/GuestCounter";
+import { OperationTypeEnum } from "app/enum/OperationTypeEnum";
+
+import { GuestTypeEnum } from "app/enum/GuestTypeEnum";
+import useGuestSelect from "app/hook/useGuestSelect";
+
+import { ReactComponent as CarretIcon } from "icons/Carret.svg";
+
+import styles from "./GuestSelector.module.css";
 
 import "./GuestSelector.css";
-import styles from "./GuestSelector.module.css";
 
 type Prop = {
   readonly isOpen: boolean;

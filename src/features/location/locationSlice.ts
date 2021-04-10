@@ -1,15 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import request from "../../app/api";
-import config from "../../app/config";
-import { RootState } from "../../app/store";
-import { constructLocationString } from "../../app/util";
-import { SuggestionTypeEnum } from "../../components/atoms/SuggestIcon/SuggestionTypeEnum";
-import { SuggestPayloadType } from "../../components/molecules/SuggestUnit/SuggestPayloadType";
-import { FetchStateEnum } from "./FetchStateEnum";
-import { ICurrentLocation } from "./ICurrentLocation";
-import { ILocationState } from "./ILocationState";
-import { ISuggestion } from "./ISuggestion";
-import { ISuggestionNearby } from "./ISuggestionNearby";
+
+import request from "app/api";
+import config from "app/config";
+import { constructLocationString } from "app/util";
+
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import { FetchStateEnum } from "app/enum/FetchStateEnum";
+
+import { SuggestPayloadType } from "app/type/SuggestPayloadType";
+import { AsyncThunkApiConfigType } from "app/type/AsyncThunkApiConfigType";
+
+import { ICurrentLocation } from "app/interface/ICurrentLocation";
+import { ILocationState } from "app/interface/ILocationState";
+import { ISuggestion } from "app/interface/ISuggestion";
+import { ISuggestionNearby } from "app/interface/ISuggestionNearby";
 
 const initialState: ILocationState = {
   isFocus: false,
@@ -25,7 +29,7 @@ const initialState: ILocationState = {
 export const fetchUserCurrentLocation = createAsyncThunk<
   ICurrentLocation,
   void,
-  AsyncThunkApiConfig
+  AsyncThunkApiConfigType
 >(
   "location/fetchUserLocation",
   async (_, { signal }) => {
@@ -52,7 +56,7 @@ export const fetchUserCurrentLocation = createAsyncThunk<
 export const fetchLocationsNearby = createAsyncThunk<
   Array<ISuggestionNearby>,
   void,
-  AsyncThunkApiConfig
+  AsyncThunkApiConfigType
 >(
   "location/fetchLocationsNearby",
   async (_, { signal, getState }) => {
@@ -106,7 +110,7 @@ export const fetchLocationsNearby = createAsyncThunk<
 export const fetchSuggestion = createAsyncThunk<
   Array<ISuggestion>,
   void,
-  AsyncThunkApiConfig
+  AsyncThunkApiConfigType
 >(
   "location/fetchSuggestion",
   async (_, { signal, getState }) => {
@@ -218,5 +222,3 @@ export const {
 } = locationSlice.actions;
 
 export default locationSlice.reducer;
-
-type AsyncThunkApiConfig = { state: RootState };

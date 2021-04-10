@@ -1,7 +1,9 @@
 import { useCallback, useMemo, useState } from "react";
-import { IGuestBase } from "../../../features/guest/IGuestBase";
-import { OperationTypeEnum } from "../../molecules/GuestCounter/OperationTypeEnum";
-import { GuestTypeEnum } from "./GuestTypeEnum";
+
+import { IGuestBase } from "app/interface/IGuestBase";
+
+import { OperationTypeEnum } from "app/enum/OperationTypeEnum";
+import { GuestTypeEnum } from "app/enum/GuestTypeEnum";
 
 export default function useGuestSelect({
   adult,

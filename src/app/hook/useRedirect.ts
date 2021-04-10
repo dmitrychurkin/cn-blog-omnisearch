@@ -1,24 +1,19 @@
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { useCallback, useMemo } from "react";
-import {
-  TypedUseSelectorHook,
-  useDispatch,
-  useSelector,
-  useStore,
-} from "react-redux";
-import { SuggestionTypeEnum } from "../components/atoms/SuggestIcon/SuggestionTypeEnum";
-import { SuggestPayloadType } from "../components/molecules/SuggestUnit/SuggestPayloadType";
-import { IDateBase } from "../features/date/IDateBase";
-import { IGuestBase } from "../features/guest/IGuestBase";
-import useRecentSearch from "../features/location/useRecentSearch";
-import config from "./config";
-import type { RootState, AppDispatch } from "./store";
-import { constructLocationString, validateDate } from "./util";
 
-export const useAppStore = () => useStore<RootState>();
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-export const useRedirect = () => {
+import config from "app/config";
+
+import { SearchQueryParamEnum } from "app/enum/SearchQueryParamEnum";
+import { SuggestionTypeEnum } from "app/enum/SuggestionTypeEnum";
+import { DateInputType } from "app/type/DateInputType";
+import { SuggestSelectType } from "app/type/SuggestSelectType";
+
+import { constructLocationString, getValidDates } from "app/util";
+
+import useAppStore from "./useAppStore";
+import useRecentSearch from "./useRecentSearch";
+
+export default function useRedirect() {
   const store = useAppStore();
   const { updateRecentSearch } = useRecentSearch();
 
@@ -33,24 +28,28 @@ export const useRedirect = () => {
       rooms,
     }: {
       location: string;
-      checkin: Moment | null | undefined;
-      checkout: Moment | null | undefined;
+      checkin: DateInputType;
+      checkout: DateInputType;
       adults: number;
       children: number;
       infants: number;
       rooms: number;
     }) => {
-      const [startDate, endDate] = validateDate(checkin, checkout)
-        ? [checkin, checkout]
-        : [moment(), moment().add(1, "day")];
-      return new Map<SearchQueryParamsType, string>()
-        .set("location", location)
-        .set("checkin", moment(startDate).format("YYYY-MM-DD"))
-        .set("checkout", moment(endDate).format("YYYY-MM-DD"))
-        .set("adults", String(adults || 1))
-        .set("children", String(children))
-        .set("infants", String(infants))
-        .set("rooms", String(rooms));
+      const [startDate, endDate] = getValidDates(checkin, checkout);
+      return new Map<SearchQueryParamEnum, string>()
+        .set(SearchQueryParamEnum.LOCATION, location)
+        .set(
+          SearchQueryParamEnum.CHECKIN,
+          moment(startDate).format("YYYY-MM-DD")
+        )
+        .set(
+          SearchQueryParamEnum.CHECKOUT,
+          moment(endDate).format("YYYY-MM-DD")
+        )
+        .set(SearchQueryParamEnum.ADULTS, String(adults || 1))
+        .set(SearchQueryParamEnum.CHILDREN, String(children))
+        .set(SearchQueryParamEnum.INFANTS, String(infants))
+        .set(SearchQueryParamEnum.ROOMS, String(rooms));
     },
     []
   );
@@ -87,7 +86,7 @@ export const useRedirect = () => {
 
   const getRedirectLink = useCallback(
     (
-      searchQueryMap: Map<SearchQueryParamsType, string>,
+      searchQueryMap: Map<SearchQueryParamEnum, string>,
       suggestionType?: SuggestionTypeEnum
     ) => {
       if (searchQueryMap.size === 0) {
@@ -95,8 +94,8 @@ export const useRedirect = () => {
       }
 
       const restrictedParams = new Map<SuggestionTypeEnum, Array<string>>()
-        .set(SuggestionTypeEnum.HOTEL, ["location"])
-        .set(SuggestionTypeEnum.VR, ["location"]);
+        .set(SuggestionTypeEnum.HOTEL, [SearchQueryParamEnum.LOCATION])
+        .set(SuggestionTypeEnum.VR, [SearchQueryParamEnum.LOCATION]);
 
       const urlInstance = new URL(getBaseUri(suggestionType));
       searchQueryMap.forEach((value: string, key: string) => {
@@ -114,7 +113,7 @@ export const useRedirect = () => {
   );
 
   const getSearchQueryParams = useCallback(
-    (additionalSearchQueryParams?: Map<SearchQueryParamsType, string>) => {
+    (additionalSearchQueryParams?: Map<SearchQueryParamEnum, string>) => {
       const {
         location: {
           location,
@@ -156,11 +155,7 @@ export const useRedirect = () => {
         SuggestionTypeEnum,
         (
           strategy: SuggestionTypeEnum,
-          manualSuggestionPayload?: SuggestPayloadType &
-            Partial<IDateBase> &
-            Partial<IGuestBase> & {
-              strategyType: SuggestionTypeEnum | undefined;
-            }
+          manualSuggestionPayload?: SuggestSelectType
         ) => string | undefined
       >()
         .set(SuggestionTypeEnum.NEARBY, (strategy: SuggestionTypeEnum) => {
@@ -171,8 +166,11 @@ export const useRedirect = () => {
           } = store.getState();
           const redirectLink = getRedirectLink(
             getSearchQueryParams(
-              new Map<SearchQueryParamsType, string>([
-                ["location", constructLocationString({ city, country })],
+              new Map<SearchQueryParamEnum, string>([
+                [
+                  SearchQueryParamEnum.LOCATION,
+                  constructLocationString({ city, country }),
+                ],
               ])
             ),
             strategy
@@ -188,11 +186,7 @@ export const useRedirect = () => {
           SuggestionTypeEnum.RECENT,
           (
             strategy: SuggestionTypeEnum,
-            manualSuggestionPayload?: SuggestPayloadType &
-              Partial<IDateBase> &
-              Partial<IGuestBase> & {
-                strategyType: SuggestionTypeEnum | undefined;
-              }
+            manualSuggestionPayload?: SuggestSelectType
           ) => {
             if (manualSuggestionPayload) {
               const {
@@ -259,9 +253,7 @@ export const useRedirect = () => {
   return useCallback(
     (
       strategy: SuggestionTypeEnum,
-      manualSuggestionPayload?: SuggestPayloadType &
-        Partial<IDateBase> &
-        Partial<IGuestBase> & { strategyType: SuggestionTypeEnum | undefined }
+      manualSuggestionPayload?: SuggestSelectType
     ) => {
       const linkGeneratedStrategy =
         generateLinkStrategies.get(strategy) ||
@@ -276,13 +268,4 @@ export const useRedirect = () => {
     },
     [generateLinkStrategies]
   );
-};
-
-type SearchQueryParamsType =
-  | "location"
-  | "checkin"
-  | "checkout"
-  | "adults"
-  | "children"
-  | "infants"
-  | "rooms";
+}
